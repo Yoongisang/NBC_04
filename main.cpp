@@ -72,6 +72,7 @@ int main() {
             PotionRecipe found = myWorkshop.searchRecipeByName(name);
             temp.addRecipe(found.potionName,found.ingredients);
             temp.displayAllRecipes();
+
         }
         else if (choice == 4) {
 
@@ -80,14 +81,14 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, name);
             AlchemyWorkshop temp;
-            std::vector<PotionRecipe> result = myWorkshop.searchRecipeByIngredient(name);
-            if (result.empty())
+            std::vector<PotionRecipe> search = myWorkshop.searchRecipeByIngredient(name);
+            if (search.empty())
             {
                 std::cout << "해당 재료가 포함된 레시피가 없습니다." << std::endl;
             }
             else
             {
-                for (const auto& recipe : result)
+                for (const auto& recipe : search)
                 {
                     temp.addRecipe(recipe.potionName, recipe.ingredients);
                 }
