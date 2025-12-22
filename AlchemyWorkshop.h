@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include "PotionRecipe.h"
+#include "RecipeManager.h"
+#include "StockManager.h"
 
 // AlchemyWorkshop 클래스: 레시피 목록을 관리
 class AlchemyWorkshop {

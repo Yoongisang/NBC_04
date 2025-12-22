@@ -21,12 +21,24 @@
     <ClCompile Include="AlchemyWorkshop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RecipeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StockManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PotionRecipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AlchemyWorkshop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecipeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StockManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
