@@ -68,7 +68,17 @@ int main() {
             std::cout << "물약 이름 입력: ";
             std::string potionName;
             std::cin >> potionName;
-            std::cout << "남은 물약 재고: " << myWorkshop.GetStockByName(potionName) << "개" << std::endl;
+            int stock = myWorkshop.GetStockByName(potionName);
+
+            if (stock == -1)
+            {
+                std::cout << "물약이 존재하지 않습니다." << std::endl;
+            }
+            else
+            {
+                std::cout << "남은 물약 재고: " << stock << "개" << std::endl;
+            }
+           
         }
         else if (choice == 4) {
             // 물약 이름으로 지급
@@ -79,6 +89,10 @@ int main() {
             {
                 std::cout << potionName << " 1개 지급완료, 남은 물약 재고: " << myWorkshop.GetStockByName(potionName) << std::endl;
             }
+            else
+            {
+                std::cout << "찾을 수 없습니다." << std::endl;
+            }
         }
         else if (choice == 5)
         {
@@ -88,6 +102,10 @@ int main() {
             std::cin >> ingredient;
             auto potionNames = myWorkshop.DispensePotionByIngredient(ingredient);
             std::cout << "*지급된 물약 리스트" << std::endl;
+            if (potionNames.empty())
+            {
+                std::cout << "찾을 수 없습니다." << std::endl;
+            }
 
             for (const auto& i : potionNames)
             {

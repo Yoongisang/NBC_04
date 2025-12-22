@@ -30,4 +30,16 @@ void StockManager::ReturnPotion(const std::string& potionName)
 	}
 }
 
+int StockManager::GetStock(const std::string& potionName) const
+{
+	auto it = potionStock.find(potionName);
+	if (it == potionStock.end())
+	{
+		return -1;
+	}
+
+	return it->second;
+	
+}
+
 
