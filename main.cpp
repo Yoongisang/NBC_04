@@ -12,9 +12,11 @@ int main() {
         std::cout << "*연금술 공방 관리 시스템" << std::endl;
         std::cout << "1. 레시피 추가" << std::endl;
         std::cout << "2. 모든 레시피 출력" << std::endl;
-        std::cout << "3. 물약 이름으로 레시피 검색" << std::endl;
-        std::cout << "4. 재료 이름으로 레시피 검색" << std::endl;
-        std::cout << "5. 종료" << std::endl;
+        std::cout << "3. 물약 재고 조회(이름)" << std::endl;
+        std::cout << "4. 물약이름으로 물약 지급" << std::endl;
+        std::cout << "5. 재료가 포함된 물약 지급" << std::endl;
+        std::cout << "6. 공병 반환" << std::endl;
+        std::cout << "7. 종료" << std::endl;
         std::cout << "선택: ";
 
         int choice;
@@ -60,43 +62,49 @@ int main() {
         }
         else if (choice == 2) {
             myWorkshop.displayAllRecipes();
-
         }
         else if (choice == 3) {
-           
-            std::string name;
-            std::cout << "물약 이름: ";
-            std::cin.ignore(10000, '\n');
-            std::getline(std::cin, name);
-            AlchemyWorkshop temp;
-            PotionRecipe found = myWorkshop.searchRecipeByName(name);
-            temp.addRecipe(found.potionName,found.ingredients);
-            temp.displayAllRecipes();
-
+            // 재고 조회(이름)
+            std::cout << "물약 이름 입력: ";
+            std::string potionName;
+            std::cin >> potionName;
+            std::cout << "남은 물약 재고: " << myWorkshop.GetStockByName(potionName) << "개" << std::endl;
         }
         else if (choice == 4) {
-
-            std::string name;
-            std::cout << "재료 이름: ";
-            std::cin.ignore(10000, '\n');
-            std::getline(std::cin, name);
-            AlchemyWorkshop temp;
-            std::vector<PotionRecipe> search = myWorkshop.searchRecipeByIngredient(name);
-            if (search.empty())
+            // 물약 이름으로 지급
+            std::cout << "물약 이름 입력: ";
+            std::string potionName;
+            std::cin >> potionName;
+            if (myWorkshop.DispensePotionByName(potionName) == true)
             {
-                std::cout << "해당 재료가 포함된 레시피가 없습니다." << std::endl;
+                std::cout << potionName << " 1개 지급완료, 남은 물약 재고: " << myWorkshop.GetStockByName(potionName) << std::endl;
             }
-            else
-            {
-                for (const auto& recipe : search)
-                {
-                    temp.addRecipe(recipe.potionName, recipe.ingredients);
-                }
-                temp.displayAllRecipes();
-            }
-            
         }
         else if (choice == 5)
+        {
+            // 재료 기준으로 지급
+            std::cout << "재료 입력: ";
+            std::string ingredient;
+            std::cin >> ingredient;
+            auto potionNames = myWorkshop.DispensePotionByIngredient(ingredient);
+            std::cout << "*지급된 물약 리스트" << std::endl;
+
+            for (const auto& i : potionNames)
+            {
+                std::cout << i << " 1개 지급완료 남은 재고: " << myWorkshop.GetStockByName(i) << std::endl;
+            }
+
+        }
+        else if (choice == 6)
+        {
+            // 공병 반환
+            std::cout << "반환할 물약 공병 이름 입력: ";
+            std::string potionName;
+            std::cin >> potionName;
+            myWorkshop.ReturnPotionByName(potionName);
+            
+        }
+        else if (choice == 7)
         {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
