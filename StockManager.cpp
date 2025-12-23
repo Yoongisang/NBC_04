@@ -9,15 +9,16 @@ void StockManager::InitializeStock(const std::string& potionName)
 
 bool StockManager::DispensePotion(const std::string& potionName)
 {
-	// 포션 재고가 있다면
-	if (potionStock[potionName] > 0)
+	// 입력된 포션이름으로 찾기
+	auto it = potionStock.find(potionName);
+	// 찾지 못했거나 재고가 0이면 false 반환
+	if (it == potionStock.end() || it->second <= 0)
 	{
-		// 포션갯수 차감 및 true 반환
-		potionStock[potionName]--;
-		return true;
+		return false;
 	}
-	// 없다면 false 반환
-	return false;
+	// 아니라면 재고 -1및 true 반환
+	it->second--;
+	return true;
 }
 
 void StockManager::ReturnPotion(const std::string& potionName)

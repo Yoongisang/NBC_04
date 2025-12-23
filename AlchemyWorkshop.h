@@ -28,6 +28,6 @@ public:
     // 실제로 지급되면 물약 이름 목록 반환(없으면 빈벡터)
     std::vector<std::string> DispensePotionByIngredient(const std::string& ingredient);
 
-    // potionNmae에 공병을 반환처리(최대 3개)
+    // potionName에 공병을 반환처리(최대 3개)
     void ReturnPotionByName(const std::string& potionName);
 };

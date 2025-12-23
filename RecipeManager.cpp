@@ -45,7 +45,7 @@ std::vector<PotionRecipe> RecipeManager::findRecipeByIngredient(const std::strin
             // 벡터에 재료중에 입력된 재료와 같은게 존재하는지 체크
             if (i == ingredient)
             {
-                // 존재한다면 포션 레시피 백터에 추가 후 반복문 종료
+                // 존재한다면 포션 레시피 벡터에 추가 후 반복문 종료
                 temp.push_back(r);
                 break;
             }
